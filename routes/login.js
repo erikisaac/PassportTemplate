@@ -7,7 +7,7 @@ var passport = require('passport')
 //   res.send('respond with a resource');
 // });
 
-app.get('/login',
+router.get('/login',
   function(req, res){
     res.sendFile('index, {root: "/public"}');
   });
