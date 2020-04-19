@@ -14,7 +14,7 @@ var userDB = require('./userDB/users');
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
 // var passport = require('passport');
 // var Strategy = require('passport-local').Strategy;
-var session = require("express-session");
+// var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,7 +26,7 @@ var app = express();
 // Erik added this for Passport
 // app.use(express.session({ secret: 'secret' }));
 app.use(passport.initialize());
-app.use(express.session());
+// app.use(express.session());
 // app.use(passport.session());
 
 // var LocalUserSchema = new mongoose.Schema({
@@ -69,7 +69,7 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public'));
