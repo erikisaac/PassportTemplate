@@ -9,11 +9,11 @@ var Strategy = require('passport-local').Strategy;
 
 router.get('/login',
   function(req, res){
-    res.sendFile('index.html, {root: "/public"}');
+    res.sendFile('index, {root: "/public"}');
   });
 
 router.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/' }),
+  passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
