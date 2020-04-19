@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 // Erik added this for Passport
 var passport = require('passport')
-var strategy = require('passport-local').Strategy;
+var Strategy = require('passport-local').Strategy;
 
 var userDB = require('./userDB/users');
 // var User = require('./userDB');
