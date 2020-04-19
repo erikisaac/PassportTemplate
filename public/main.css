@@ -1,0 +1,59 @@
+body {
+	width: 1000px;
+	margin: auto;
+}
+
+header {
+	text-align: center;
+}
+
+#HeaderH1Title {
+	margin-bottom: 5px;
+}
+
+#HeaderH4Title {
+	margin-top: 0px
+}
+
+nav {
+	text-align: center;
+	font-size: 115%;
+}
+
+hr {
+	margin: 10px;
+	border-width: 3px;
+}
+
+main {
+	
+}
+
+#MainH3Title {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+#MainH4Title {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+table#BasicTable {
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	table-layout:fixed;
+}
+
+section {
+
+}
+
+footer {
+	text-align: center;
+	font-size: 85%;
+	font-style: italic;
+}

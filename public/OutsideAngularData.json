@@ -1,0 +1,26 @@
+[
+    {
+        "AngularColumnA" : "A1 Outside",
+        "AngularColumnB" : "B1 Outside",
+        "AngularColumnC" : "C1 Outside",
+        "AngularColumnD" : "D1 Outside"
+    },
+    {
+        "AngularColumnA" : "A2 Outside",
+        "AngularColumnB" : "B2 Outside",
+        "AngularColumnC" : "C2 Outside",
+        "AngularColumnD" : "D2 Outside"
+    },
+    {
+        "AngularColumnA" : "A3 Outside",
+        "AngularColumnB" : "B3 Outside",
+        "AngularColumnC" : "C3 Outside",
+        "AngularColumnD" : "D3 Outside"
+    },
+    {
+        "AngularColumnA" : "A4 Outside",
+        "AngularColumnB" : "B4 Outside",
+        "AngularColumnC" : "C4 Outside",
+        "AngularColumnD" : "D4 Outside"
+    }
+]
