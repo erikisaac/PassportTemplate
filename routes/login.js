@@ -9,6 +9,7 @@ var passport = require('passport')
 // });
 
 router.post('/login',
+	console.log("Passport POST request starting.")	
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true })
