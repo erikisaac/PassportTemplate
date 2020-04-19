@@ -68,16 +68,16 @@ passport.use(new LocalStrategy(
   }
 ));
 
-passport.serializeUser(function(user, cb) {
-  cb(null, user._id);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(id, cb) {
-  userDB.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
+// passport.deserializeUser(function(id, cb) {
+//   userDB.users.findById(id, function (err, user) {
+//     if (err) { return cb(err); }
+//     cb(null, user);
+//   });
+// });
 
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
