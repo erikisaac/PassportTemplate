@@ -68,9 +68,9 @@ passport.use(new LocalStrategy(
   }
 ));
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
+// passport.serializeUser(function(user, done) {
+//   done(null, user.id);
+// });
 
 // passport.deserializeUser(function(id, cb) {
 //   userDB.users.findById(id, function (err, user) {
@@ -79,7 +79,7 @@ passport.serializeUser(function(user, done) {
 //   });
 // });
 
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+// app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public'));
