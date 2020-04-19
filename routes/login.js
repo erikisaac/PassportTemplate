@@ -7,6 +7,8 @@ var passport = require('passport')
 //   res.send('respond with a resource');
 // });
 
+
+
 router.post('/login',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/',
