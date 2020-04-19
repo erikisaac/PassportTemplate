@@ -16,8 +16,8 @@ router.get("/", function(req, res) {
 
   // mongodb://erikisaac:Yellow1972!@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
   // mongodb://<dbuser>:<dbpassword>@ds037205.mlab.com:37205/heroku_r18r5gzd
-
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds037205.mlab.com:37205/heroku_r18r5gzd", function (err, client) {
+  // mongodb://<dbuser>:<dbpassword>@ds155674.mlab.com:55674/heroku_3zgk6kbj
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
@@ -42,7 +42,7 @@ router.post("/", function(req, res) {
   var newData = req.body;
   console.log(newData);
 
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds037205.mlab.com:37205/heroku_r18r5gzd", function (err, client) {
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
@@ -72,7 +72,7 @@ router.delete("/:id", function(req, res) {
 
   console.log("Erik Note: Var check: " + req.params.id + " " + JSON.stringify(req.params.id));
 
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds037205.mlab.com:37205/heroku_r18r5gzd", function (err, client) {
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
