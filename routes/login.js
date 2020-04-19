@@ -8,7 +8,7 @@ var passport = require('passport')
 //   res.send('respond with a resource');
 // });
 
-var User = {"username" : "erik", "password" : "1234"};
+var User = {username : "erik", password : "1234"};
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -29,4 +29,3 @@ console.log("Passport POST request starting.");
 router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
 module.exports = router;
-
