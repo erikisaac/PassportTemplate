@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Erik added this for Passport
-var passport = require('passport');
+var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var session = require("express-session");
 
