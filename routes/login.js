@@ -34,9 +34,11 @@ router.get('/',
     // res.render('login');
   });
   
-router.post('/', passport.authenticate('local'), function(req, res) {
-    res.redirect('/');
-});
+app.post('/',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
   
 router.get('/logout',
   function(req, res){
