@@ -34,7 +34,7 @@ router.get('/',
     // res.render('login');
   });
   
-app.post('/',
+router.post('/',
   passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login',
                                    failureFlash: true })
