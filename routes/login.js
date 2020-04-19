@@ -9,7 +9,7 @@ var passport = require('passport')
 
 router.post('/login',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
+                                   failureRedirect: '/page2',
                                    failureFlash: true })
 );
 
