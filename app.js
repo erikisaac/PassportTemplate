@@ -29,6 +29,10 @@ app.use(passport.initialize());
 // app.use(express.session());
 // app.use(passport.session());
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
 // var LocalUserSchema = new mongoose.Schema({
 // username: String,
 // salt: String,

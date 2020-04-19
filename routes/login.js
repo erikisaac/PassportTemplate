@@ -29,12 +29,12 @@ var Strategy = require('passport-local').Strategy;
 // console.log("Passport POST request starting.");	
 // router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
-router.get('/login',
+router.get('/',
   function(req, res){
     // res.render('login');
   });
   
-router.post('/login', passport.authenticate('local'), function(req, res) {
+router.post('/', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
 });
   
