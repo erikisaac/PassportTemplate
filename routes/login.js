@@ -6,7 +6,7 @@ var router = express.Router();
 //   res.send('respond with a resource');
 // });
 
-var passport = require('passport')
+var passport = require('passport');
   , LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
