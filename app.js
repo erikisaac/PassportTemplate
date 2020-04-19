@@ -21,6 +21,8 @@ var loginRouter = require('./routes/login');
 var app = express();
 
 // Erik added this for Passport
+app.use(passport.initialize());
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function(err, user) {
