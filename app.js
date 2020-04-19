@@ -22,9 +22,9 @@ var loginRouter = require('./routes/login');
 var app = express();
 
 // Erik added this for Passport
-app.use(express.session({ secret: 'secret' }));
+// app.use(express.session({ secret: 'secret' }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // var LocalUserSchema = new mongoose.Schema({
 // username: String,
