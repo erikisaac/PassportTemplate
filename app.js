@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 // Erik added this for Passport
 var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var strategy = require('passport-local').Strategy;
 // var User = require('./userDB');
 // var passport = require('passport')
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
@@ -24,6 +24,7 @@ var app = express();
 // Erik added this for Passport
 // app.use(express.session({ secret: 'secret' }));
 app.use(passport.initialize());
+app.use(express.session());
 // app.use(passport.session());
 
 // var LocalUserSchema = new mongoose.Schema({
@@ -32,7 +33,7 @@ app.use(passport.initialize());
 // hash: String
 // });
 
-var User = {"username" : "erik", "password" : "1234"};
+// var User = {"username" : "erik", "password" : "1234"};
 
 // passport.serializeUser(function(user, done) {
 //     done(null, user.id);
@@ -45,23 +46,18 @@ var User = {"username" : "erik", "password" : "1234"};
 //     });
 // });
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+passport.use(new Strategy(
+  function(username, password, cb) {
+    db.users.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
     });
-  }
-));
+  }));
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public'));
 // app.set('view engine', 'jade');
 
 app.use(logger('dev'));

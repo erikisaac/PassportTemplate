@@ -26,6 +26,6 @@ passport.use(new LocalStrategy(
 ));
 
 console.log("Passport POST request starting.");	
-router.post('/login', passport.authenticate('local', { successRedirect: '/index.html', failureRedirect: '/index.html', failureFlash: true }));
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
 module.exports = router;
