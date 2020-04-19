@@ -6,8 +6,8 @@ var logger = require('morgan');
 
 // Erik added this for Passport
 var passport = require('passport');
-  // , LocalStrategy = require('passport-local').Strategy;
-var session = require("express-session"),
+  , LocalStrategy = require('passport-local').Strategy;
+var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
