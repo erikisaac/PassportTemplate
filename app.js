@@ -14,7 +14,7 @@ var userDB = require('./userDB/users');
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
 // var passport = require('passport');
 // var Strategy = require('passport-local').Strategy;
-// var session = require("express-session");
+var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
