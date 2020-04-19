@@ -28,24 +28,24 @@ var passport = require('passport')
 // console.log("Passport POST request starting.");	
 // router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/', failureFlash: true }));
 
-app.get('/login',
+router.get('/login',
   function(req, res){
     res.render('login');
   });
   
-app.post('/login', 
+router.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
   
-app.get('/logout',
+router.get('/logout',
   function(req, res){
     req.logout();
     res.redirect('/');
   });
 
-app.get('/profile',
+router.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile', { user: req.user });
