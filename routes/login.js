@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+  // , LocalStrategy = require('passport-local').Strategy;
 
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
