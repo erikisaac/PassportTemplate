@@ -7,6 +7,7 @@ var logger = require('morgan');
 // Erik added this for Passport
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
+// var User = require('./userDB');
 // var passport = require('passport')
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
 // var passport = require('passport');
@@ -21,7 +22,28 @@ var loginRouter = require('./routes/login');
 var app = express();
 
 // Erik added this for Passport
+app.use(express.session({ secret: 'secret' }));
 app.use(passport.initialize());
+app.use(passport.session());
+
+// var LocalUserSchema = new mongoose.Schema({
+// username: String,
+// salt: String,
+// hash: String
+// });
+
+var User = {"username" : "erik", "password" : "1234"};
+
+// passport.serializeUser(function(user, done) {
+//     done(null, user.id);
+// });
+// passport.deserializeUser(function(id, done) {
+//     User.findOne({
+//         _id: id
+//     }, '-password -salt', function(err, user) {
+//         done(err, user);
+//     });
+// });
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
