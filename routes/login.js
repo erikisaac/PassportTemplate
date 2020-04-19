@@ -34,11 +34,9 @@ router.get('/login',
     // res.render('login');
   });
   
-router.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
+router.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/');
-  });
+});
   
 router.get('/logout',
   function(req, res){
