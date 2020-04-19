@@ -9,7 +9,7 @@ var passport = require('passport')
 
 router.get('/login',
   function(req, res){
-    res.sendFile('index, {root: "/public"}');
+    res.sendFile('index.html, {root: "/public"}');
   });
 
 router.post('/login', 
