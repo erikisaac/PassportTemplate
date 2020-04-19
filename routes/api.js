@@ -17,13 +17,13 @@ router.get("/", function(req, res) {
   // mongodb://erikisaac:Yellow1972!@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false
   // mongodb://<dbuser>:<dbpassword>@ds037205.mlab.com:37205/heroku_r18r5gzd
   // mongodb://<dbuser>:<dbpassword>@ds155674.mlab.com:55674/heroku_3zgk6kbj
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
     };
 
-    myMongoDB = client.db("heroku_r18r5gzd");
+    myMongoDB = client.db("heroku_3zgk6kbj");
     var cursor = myMongoDB.collection('erikcollection').find({}).toArray(function(err, docs) {
       if (err) {
         handleError(res, err.message, "Failed to get contacts.");
@@ -42,13 +42,13 @@ router.post("/", function(req, res) {
   var newData = req.body;
   console.log(newData);
 
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
     };
 
-    myMongoDB = client.db("heroku_r18r5gzd");  
+    myMongoDB = client.db("heroku_3zgk6kbj");  
     var cursor = myMongoDB.collection('erikcollection').insertOne(newData, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to add new data.");
@@ -72,13 +72,13 @@ router.delete("/:id", function(req, res) {
 
   console.log("Erik Note: Var check: " + req.params.id + " " + JSON.stringify(req.params.id));
 
-  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_r18r5gzd:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
+  mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
       console.log(err);
       process.exit(1);
     };
 
-    myMongoDB = client.db("heroku_r18r5gzd");  
+    myMongoDB = client.db("heroku_3zgk6kbj");  
     myMongoDB.collection('erikcollection').deleteOne({_id: new ObjectID(req.params.id)}, function(err, doc) {
       if (err) {
         handleError(res, err.message, "Failed to delete contact");
