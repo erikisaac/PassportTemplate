@@ -7,12 +7,14 @@ var logger = require('morgan');
 // Erik added this for Passport
 var passport = require('passport')
 var strategy = require('passport-local').Strategy;
+
+var userDB = require('./userDB');
 // var User = require('./userDB');
 // var passport = require('passport')
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
 // var passport = require('passport');
 // var Strategy = require('passport-local').Strategy;
-// var session = require("express-session");
+var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -48,13 +50,26 @@ app.use(express.session());
 
 passport.use(new Strategy(
   function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+    userDB.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
       return cb(null, user);
     });
   }));
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  userDB.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'public'));
