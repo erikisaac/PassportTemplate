@@ -8,7 +8,7 @@ var logger = require('morgan');
 var passport = require('passport')
 var strategy = require('passport-local').Strategy;
 
-var userDB = require('./userDB');
+var userDB = require('./userDB/users');
 // var User = require('./userDB');
 // var passport = require('passport')
 //   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
