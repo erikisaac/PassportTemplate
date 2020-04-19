@@ -5,42 +5,34 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Erik added this for Passport
-var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
-var session = require("express-session");
+var passport = require('passport')
+  , OAuthStrategy = require('passport-oauth').OAuthStrategy;
+// var passport = require('passport');
+// var Strategy = require('passport-local').Strategy;
+// var session = require("express-session");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-var loginRouter = require('./routes/login');
+var outhRouter = require('./routes/auth');
 
 var app = express();
 
 // Erik added this for Passport
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(new Strategy(
-  function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
+passport.use('provider', new OAuthStrategy({
+    requestTokenURL: 'https://www.provider.com/oauth/request_token',
+    accessTokenURL: 'https://www.provider.com/oauth/access_token',
+    userAuthorizationURL: 'https://www.provider.com/oauth/authorize',
+    consumerKey: '123-456-789',
+    consumerSecret: 'shhh-its-a-secret'
+    callbackURL: 'https://www.example.com/auth/provider/callback'
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOrCreate(..., function(err, user) {
+      done(err, user);
     });
-  }));
-
-passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
-});
-
-passport.deserializeUser(function(id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-});
+  }
+));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,7 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-app.use('/login', loginRouter);
+app.use('/auth/provider', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
