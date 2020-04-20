@@ -5,6 +5,9 @@ var passport = require('passport')
 var mongodb = require("mongodb");
 var flash = require('connect-flash');
 
+var app = express();
+app.use(flash());
+
 // router.get('/', function(req, res, next) {
 // 	res.render('/public/index.html');
 // });
