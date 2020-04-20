@@ -23,7 +23,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
 
 myMongoDB = client.db("heroku_3zgk6kbj");
 
-passport.use('local-login', new LocalStrategy({
+passport.use(new LocalStrategy({
   passReqToCallback : true
 }, 
 function(req, username, password, done) {
