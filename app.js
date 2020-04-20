@@ -13,7 +13,7 @@ var session = require("express-session"),
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
-// var loginRouter = require('./routes/login');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -22,6 +22,12 @@ app.use(session({ secret: "cats" }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
+    if (err) {
+      console.log(err);
+      process.exit(1);
+    };
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -61,14 +67,14 @@ app.use(express.static(path.join(__dirname, '/public')));
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-// app.use('/login', loginRouter);
+app.use('/login', loginRouter);
 
 // Erik added this for Passport
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/',
-                                   failureFlash: true })
-);
+// app.post('/login',
+//   passport.authenticate('local', { successRedirect: '/',
+//                                    failureRedirect: '/',
+//                                    failureFlash: true })
+// );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
