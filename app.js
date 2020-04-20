@@ -66,7 +66,7 @@ app.use('/api', apiRouter);
 // Erik added this for Passport
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
+                                   failureRedirect: '/',
                                    failureFlash: true })
 );
 
