@@ -23,10 +23,10 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
-      if (!myMongoDB) {
+      if (!myMongoDB.username) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!myMongoDB.validPassword(password)) {
+      if (!myMongoDB.password(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, myMongoDB);
