@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
-router.get('/', function(req, res, next) {
+router.get('/login', function(req, res, next) {
 	res.render('/public/index.html');
 });
 
