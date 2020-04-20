@@ -19,8 +19,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
 
 myMongoDB = client.db("heroku_3zgk6kbj");
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
+passport.use(new LocalStrategy({
+  passReqToCallback : true
+}, function(username, password, done) {
     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
       if (!myMongoDB.username) {
