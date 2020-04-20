@@ -23,9 +23,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
 
 myMongoDB = client.db("heroku_3zgk6kbj");
 
-passport.use(new LocalStrategy({
+passport.use('local-login', new LocalStrategy({
   passReqToCallback : true
-}, function(req, username, password, done) {
+}, 
+function(req, username, password, done) {
     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -34,7 +35,7 @@ passport.use(new LocalStrategy({
       if (user.password != password) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, user);
+      return done(null, user, { message: 'Yay!' });
     });
   }
 ));
