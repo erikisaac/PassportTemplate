@@ -41,6 +41,11 @@ function(req, username, password, done) {
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
 // console.log(myMongoDB);
 });
 
