@@ -38,7 +38,7 @@ passport.use(new LocalStrategy({
     });
   }
 ));
-console.log(myMongoDB);
+// console.log(myMongoDB);
 });
 
 module.exports = router;
