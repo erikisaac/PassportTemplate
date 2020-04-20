@@ -34,7 +34,7 @@ myMongoDB = client.db("heroku_3zgk6kbj");
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    myMongoDB.collection('erikcollection').findOne({ 'username': username }, function(err, user) {
+    myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
       if (!myMongoDB) {
         return done(null, false, { message: 'Incorrect username.' });
