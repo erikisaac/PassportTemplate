@@ -28,10 +28,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
       console.log(err);
       process.exit(1);
     };
+myMongoDB = client.db("heroku_3zgk6kbj");
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
+    myMongoDB.collection('erikcollection').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
