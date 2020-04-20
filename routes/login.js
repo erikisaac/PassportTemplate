@@ -28,7 +28,7 @@ myMongoDB = client.db("heroku_3zgk6kbj");
 passport.use(new LocalStrategy({
   passReqToCallback : true
 }, 
-function(username, password, done) {
+function(req, username, password, done) {
     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
