@@ -31,22 +31,23 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
     };
 
 myMongoDB = client.db("heroku_3zgk6kbj");
-});
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
     myMongoDB.collection('erikcollection').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
-      if (!user) {
+      if (!myMongoDB) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (!myMongoDB.validPassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, user);
+      return done(null, myMongoDB);
     });
   }
 ));
+console.log(myMongoDB);
+});
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
