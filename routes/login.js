@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var mongodb = require("mongodb");
+var flash = require('connect-flash');
 
 // router.get('/', function(req, res, next) {
 // 	res.render('/public/index.html');
@@ -24,10 +25,10 @@ passport.use(new LocalStrategy({
 }, function(username, password, done) {
     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
       if (err) { return done(err); }
-      if (!myMongoDB.username) {
+      if (!myMongoDB) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!myMongoDB.password(password)) {
+      if (!myMongoDB.validPassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, myMongoDB);
