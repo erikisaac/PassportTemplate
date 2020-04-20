@@ -13,7 +13,7 @@ app.use(flash());
 // });
 
 
-router.post('/', passport.authenticate('local', { successRedirect: '/', successFlash: true, successFlash: 'Erik Note: Success flash!', failureRedirect: '/', failureFlash: 'Erik Note: Failure flash!', failureFlash: true }));
+router.post('/login', passport.authenticate('local', { successRedirect: '/', successFlash: true, successFlash: 'Erik Note: Success flash!', failureRedirect: '/login', failureFlash: 'Erik Note: Failure flash!', failureFlash: true }));
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
@@ -31,7 +31,7 @@ passport.use(new LocalStrategy({
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (user.password != password) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);
