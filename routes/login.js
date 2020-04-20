@@ -46,6 +46,12 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
+passport.deserializeUser(function(id, done) {
+  myMongoDB.collection('users').findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
 // console.log(myMongoDB);
 });
 
