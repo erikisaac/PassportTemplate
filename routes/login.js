@@ -13,7 +13,7 @@ var flash = require('connect-flash');
 // });
 
 
-router.post('/', passport.authenticate('local', { successRedirect: '/',
+router.post('/', passport.authenticate('local', { successRedirect: '/page2.html',
 	failureRedirect: '/'})
 );
 
