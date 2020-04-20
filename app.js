@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongodb = require("mongodb");
 
 // Erik added this for Passport
 var passport = require('passport')
