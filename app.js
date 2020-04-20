@@ -29,9 +29,9 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//her
       console.log(err);
       process.exit(1);
     };
-});
 
 myMongoDB = client.db("heroku_3zgk6kbj");
+});
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
