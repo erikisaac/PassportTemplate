@@ -5,17 +5,10 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 // Erik added this for Passport
-// var passport = require('passport')
-// var Strategy = require('passport-local').Strategy;
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
-// var userDB = require('./userDB/users');
-// var User = require('./userDB');
-// var passport = require('passport')
-//   , OAuthStrategy = require('passport-oauth').OAuthStrategy;
-// var passport = require('passport');
-// var Strategy = require('passport-local').Strategy;
-var session = require("express-session");
+var session = require("express-session"),
+    bodyParser = require("body-parser");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,33 +18,10 @@ var loginRouter = require('./routes/login');
 var app = express();
 
 // Erik added this for Passport
-// app.use(express.session({ secret: 'secret' }));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
-// app.use(express.session());
-// app.use(passport.session());
-
-var bodyParser = require('body-parser');
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-// var LocalUserSchema = new mongoose.Schema({
-// username: String,
-// salt: String,
-// hash: String
-// });
-
-var User = {"username" : "erik", "password" : "1234"};
-
-// passport.serializeUser(function(user, done) {
-//     done(null, user.id);
-// });
-// passport.deserializeUser(function(id, done) {
-//     User.findOne({
-//         _id: id
-//     }, '-password -salt', function(err, user) {
-//         done(err, user);
-//     });
-// });
+app.use(passport.session());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -68,28 +38,25 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
-// passport.deserializeUser(function(id, cb) {
-//   userDB.users.findById(id, function (err, user) {
-//     if (err) { return cb(err); }
-//     cb(null, user);
-//   });
-// });
-
-// app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 // view engine setup
-app.set('views', path.join(__dirname, 'public'));
+// app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
