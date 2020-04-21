@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongodb = require("mongodb");
+var router = express.Router();
 
 // Erik added this for Passport
 var passport = require('passport')
