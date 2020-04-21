@@ -14,7 +14,7 @@ var router = express.Router();
 // 	// res.sendFile('');
 // });
 
-router.get('/index2.html',checkAuthentication,function(req,res){
+router.get('/',checkAuthentication,function(req,res){
     //do something only if user is authenticated
     router.use(express.static('usersonly'));
 });
