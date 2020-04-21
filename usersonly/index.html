@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Users Only - Home</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="../main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<!-- <script src="main.js"></script> -->
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+<header>
+    <h1 id="HeaderH1Title">Passport Template</h1>
+    <h4 id="HeaderH4Title">Users Only Page</h4>
+</header>
+
+<nav>
+    <hr>
+    <b>Home</b>
+    <hr>
+</nav>
+
+<main>
+	<h3 id="MainH3Title">Main Section</h3>
+    <p>This is for users only!</p>
+
+    <!-- <section>
+        <form action="/login" method="post" id="Login">
+            <div>
+                <label>Username:</label>
+                <input type="text" name="username"/>
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type="password" name="password"/>
+            </div>
+            <div>
+                <input type="submit" value="Log In"/>
+            </div>
+        </form>
+    </section> -->
+
+    <!-- <section>
+        <h4 id="MainH4Title">HTML Table</h4>
+        <table class="table table-striped table-bordered table-hover table-condensed" id="BasicTable">
+            <tr>
+                <th>Column A</th>
+                <th>Column B</th>
+                <th>Column C</th>
+                <th>Column D</th>
+            </tr>
+            <tr>
+                <td>A1</td>
+                <td>B1</td>
+                <td>C1</td>
+                <td>D1</td>
+            </tr>
+            <tr>
+                <td>A2</td>
+                <td>B2</td>
+                <td>C2</td>
+                <td>D2</td>
+            </tr>
+            <tr>
+                <td>A3</td>
+                <td>B3</td>
+                <td>C3</td>
+                <td>D3</td>
+            </tr>
+            <tr>
+                <td>A4</td>
+                <td>B4</td>
+                <td>C4</td>
+                <td>D4</td>
+            </tr>
+        </table>
+    </section> -->
+
+    <!-- <section>
+        <h4 id="MainH4Title">Angular Table</h4>
+        <table class="table table-striped table-bordered table-hover table-condensed" id="BasicTable">
+            <tr>
+                <th>Angular Column A</th>
+                <th>Angular Column B</th>
+                <th>Angular Column C</th>
+                <th>Angular Column D</th>
+            </tr>
+            <tr ng-repeat="x in AngularColumnData | filter:f">
+                <td>{{x.AngularColumnA}}</td>
+                <td>{{x.AngularColumnB}}</td>
+                <td>{{x.AngularColumnC}}</td>
+                <td>{{x.AngularColumnD}}</td>
+            </tr>
+        </table>
+    </section> -->
+
+    <!-- <section>
+        <h4 id="MainH4Title">Angular Table with Outside Data</h4>
+        <table class="table table-striped table-bordered table-hover table-condensed" id="BasicTable">
+            <tr>
+                <th>Angular Column A</th>
+                <th>Angular Column B</th>
+                <th>Angular Column C</th>
+                <th>Angular Column D</th>
+            </tr>
+            <tr ng-repeat="OutsideAngularData in list | filter:f">
+                <td>{{OutsideAngularData.AngularColumnA}}</td>
+                <td>{{OutsideAngularData.AngularColumnB}}</td>
+                <td>{{OutsideAngularData.AngularColumnC}}</td>
+                <td>{{OutsideAngularData.AngularColumnD}}</td>
+            </tr>
+        </table>
+    </section> -->
+
+</main>
+
+<footer>
+    <hr>
+    &copy;2020 Erik Isaac<br>
+    <b>Home</b>
+</footer>
+
+</body>
+
+<script>
+var app = angular.module('myApp', [])
+app.controller('myController', function($scope, $http) {
+                
+    // START: GET Request from file
+    var request = {
+        method: 'get',
+        url: '/OutsideAngularData.json',
+        dataType: 'json',
+        contentType: "application/json"
+    };
+
+    $scope.arrOutsideAngularData = new Array;
+
+    $http(request)
+        .success(function (jsonData) {
+            $scope.arrOutsideAngularData = jsonData;
+            $scope.list = $scope.arrOutsideAngularData;
+        })
+        .error(function () {
+            console.log("Request Fail Function");
+        });
+
+    // START: GET Request from Server Mongo DB
+    var mongoRequest = {
+        method: 'get',
+        url: '/api',
+        dataType: 'json',
+        contentType: "application/json"
+    };
+
+    $scope.arrOutsideMongoData = new Array;
+
+    $http(mongoRequest)
+        .success(function (jsonData2) {
+            $scope.arrOutsideMongoData = jsonData2;
+            $scope.list2 = $scope.arrOutsideMongoData;
+            console.log("From Mongo DB: " + $scope.list2);
+        })
+        .error(function () {
+            console.log("Request Fail Function");
+        });
+
+    // START: POST Request from Server Mongo DB
+                
+    // var POSTRequest = {
+    //     method: 'post',
+    //     url: '/dbtest',
+    //     dataType: 'json',
+    //     contentType: "application/json",
+    //     data: '{"AngularColumnA" : "???"}'
+    // };
+
+    // POSTRequest.data = '{"MongoColumnA" : "A5 - It new!!!", "MongoColumnB" : "B5 - It new!!!", "MongoColumnC" : "C5 - It new!!!", "MongoColumnD" : "D5 - It new!!!"}';
+
+    // $http(POSTRequest)
+    //     .success(function (jsonPOSTData) {
+    //         $scope.arrPOSTData = jsonPOSTData;
+    //     })
+    //     .error(function () {
+    //         console.log("Request Fail Function");
+    //     });
+
+    {$scope.AngularColumnData = [
+        {
+            AngularColumnA : 'A1',
+            AngularColumnB : 'B1',
+            AngularColumnC : 'C1',
+            AngularColumnD : 'D1',
+        },
+        {
+            AngularColumnA : 'A2',
+            AngularColumnB : 'B2',
+            AngularColumnC : 'C2',
+            AngularColumnD : 'D2',
+        },
+        {
+            AngularColumnA : 'A3',
+            AngularColumnB : 'B3',
+            AngularColumnC : 'C3',
+            AngularColumnD : 'D3',
+        },
+        {
+            AngularColumnA : 'A4',
+            AngularColumnB : 'B4',
+            AngularColumnC : 'C4',
+            AngularColumnD : 'D4',
+        }
+    ]};
+                
+    console.log($scope.arrOutsideAngularData);
+
+    var POSTInputTest = ["New data for A.", "New data for B.", "New data for C.", "New data for D."];
+    var POSTInput = POSTInputTest;
+
+    function DataObject(a, b, c, d) {
+        this.MongoColumnA = a;
+        this.MongoColumnB = b;
+        this.MongoColumnC = c;
+        this.MongoColumnD = d;
+    };
+
+    var PostInputReady = new DataObject();
+    
+    $scope.POSTinputA = POSTInputTest[0];
+    $scope.POSTinputB = POSTInputTest[1];
+    $scope.POSTinputC = POSTInputTest[2];
+    $scope.POSTinputD = POSTInputTest[3];
+
+    var formInput = [];
+
+    $scope.POSTButton = function(type) {
+        console.log("Erik Note: " + type + " POST Button Clicked");
+        formInput[0] = $scope.POSTinputA;
+        formInput[1] = $scope.POSTinputB;
+        formInput[2] = $scope.POSTinputC;
+        formInput[3] = $scope.POSTinputD;
+        fillInput(type);
+        POSTNewData();
+
+        function fillInput(type) {
+            var i;
+            for (i = 0; i < 4; i++) {
+            switch(type) {
+                case 'test':
+                    POSTInputTest[0] = "THIS";
+                    POSTInputTest[1] = "IS";
+                    POSTInputTest[2] = "A";
+                    POSTInputTest[3] = "TEST!!!";
+                    break;
+                case 'add':
+                    POSTInput[i] = formInput[i];
+                    POSTInputTest[i] = POSTInput[i];
+                    break;
+                case 'clear':
+                    POSTInputTest[i] = "";
+                    break;
+                default:
+                    break;
+                };
+            };
+            $scope.POSTinputA = POSTInputTest[0];
+            $scope.POSTinputB = POSTInputTest[1];
+            $scope.POSTinputC = POSTInputTest[2];
+            $scope.POSTinputD = POSTInputTest[3];
+            console.log("Erik Note: POSTInput = " + POSTInput);
+            PostInputReady.MongoColumnA = POSTInput[0];
+            PostInputReady.MongoColumnB = POSTInput[1];
+            PostInputReady.MongoColumnC = POSTInput[2];
+            PostInputReady.MongoColumnD = POSTInput[3];
+        };
+
+        function POSTNewData() {
+            console.log("Erik Note: POSTButton Function running.");
+            
+            var POSTRequest2 = {
+                method: 'post',
+                url: '/api',
+                dataType: 'json',
+                contentType: "application/json",
+                data: '{"AngularColumnA" : ""}'
+            };
+
+            POSTRequest2.data = PostInputReady;
+
+            $http(POSTRequest2)
+                .success(function (jsonPOSTData) {
+                $scope.arrPOSTData = jsonPOSTData;
+            })
+            .error(function () {
+                console.log("Request Fail Function");
+            });
+
+            console.log("Erik Note: POSTButton sending: " + POSTRequest2.data + JSON.stringify(POSTRequest2.data));
+        };
+    };
+
+    $scope.DELETEButton = function(id) {    
+        console.log("Erik Note: DELETE Button clicked and passed: " + id);
+        var idNumber = id
+
+        function DeleteObject(x) {
+            this.id = x;
+        };
+
+        var idToDelete = new DeleteObject();
+        // idToDelete.id = idNumber;
+        // console.log("Erik Note: Object to delete: " + idToDelete + " " + JSON.stringify(idToDelete));
+        DELETEData();
+
+        //DELETE Request
+        function DELETEData() {
+            console.log("Erik Note: DELETE Button Function running.");
+            
+            var DELETERequest = {
+                method: 'delete',
+                url: '/api/',
+                dataType: 'json',
+                contentType: "application/json",
+                data: '{"MongoColumnA": ""}',
+                // params: ''
+            };
+
+            DELETERequest.url = "/api/" + idNumber;
+            // DELETERequest.params = idToDelete;
+            // DELETERequest.params = idNumber;
+            // console.log("Erik Note: New string to delete: " + DELETERequest.params + " " + JSON.stringify(DELETERequest.params) + " " + DELETERequest.params.id);
+
+            $http(DELETERequest)
+                .success(function () {
+
+            })
+                .error(function () {
+                    console.log("Request Fail Function");
+            });
+        };
+    };
+});
+    
+    app.directive("makeDeleteButton", function() {
+        return {
+            template : '<button class="btn btn-danger" type="button" ng-click="DELETEButton(OutsideMongoData._id)">Delete</button>'
+        };
+    });
+
+</script>
+</html>
