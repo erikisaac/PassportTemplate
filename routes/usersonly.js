@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var path = require('path');
 
 // function authenticateUser(req) {
 // 	if (req.isAuthenticated()) {
@@ -15,16 +15,16 @@ var router = express.Router();
 // });
 
 router.get('/',checkAuthentication,function(req,res){
-    //do something only if user is authenticated
     router.use(express.static('usersonly'));
+    res.sendFile((path.join(__dirname, '/usersonly')));
 });
 function checkAuthentication(req,res,next){
-    if(req.isAuthenticated()){
-        //req.isAuthenticated() will return true if user is logged in
+	if(req.isAuthenticated()){
+    	   
         next();
-    } else{
+    } else {
         res.redirect("/");
     }
-}
+};
 
 module.exports = router;
