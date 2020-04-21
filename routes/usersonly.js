@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 
-function authenticateUser() {
+function authenticateUser(req) {
 	if (req.isAuthenticated()) {
 		router.use(express.static('usersonly'));
 	};
@@ -10,7 +10,7 @@ function authenticateUser() {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	authenticateUser();
+	authenticateUser(req);
 	// res.sendFile('');
 });
 
