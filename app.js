@@ -16,7 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var loginRouter = require('./routes/login');
-var usersonly = require('./routes/usersonly');
+var usersonlyRouter = require('./routes/usersonly');
 
 var app = express();
 
