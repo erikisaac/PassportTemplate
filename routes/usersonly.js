@@ -9,7 +9,7 @@ function authenticateUser(req) {
 };
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/index2.html', function(req, res, next) {
 	authenticateUser(req);
 	// res.sendFile('');
 });
