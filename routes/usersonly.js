@@ -14,13 +14,14 @@ var path = require('path');
 // 	// res.sendFile('');
 // });
 
-router.get('/',checkAuthentication,function(req,res){
+router.get('/', checkAuthentication, function(req,res){
     router.use(express.static('usersonly'));
     res.sendFile((path.join(__dirname, '../usersonly/index2.html')));
 });
+
 function checkAuthentication(req,res,next){
 	if(req.isAuthenticated()){
-    	   
+		res.redirect("/");	   
         next();
     } else {
         res.redirect("/");
