@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var test = false;
+var test = true;
 
 if (test == true) {
 	router.use(express.static('usersonly'));
