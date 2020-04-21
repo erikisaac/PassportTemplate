@@ -12,7 +12,7 @@ var passport = require('passport')
 var session = require("express-session"),
     bodyParser = require("body-parser");
 
-var indexRouter = require('./routes/index');
+// var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var loginRouter = require('./routes/login');
@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static('public'));
-app.use(express.static('usersonly'));
+// app.use(express.static('usersonly'));
 
 // app.use(express.static(path.join(__dirname, '/usersonly')));
 
