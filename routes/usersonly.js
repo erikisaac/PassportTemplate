@@ -3,7 +3,7 @@ var router = express.Router();
 
 var test = false;
 
-if (test = true) {
+if (test == true) {
 	router.use(express.static('usersonly'));
 };
 
