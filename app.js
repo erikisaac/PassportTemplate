@@ -24,41 +24,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
-//     if (err) {
-//       console.log(err);
-//       process.exit(1);
-//     };
-
-// myMongoDB = client.db("heroku_3zgk6kbj");
-
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     myMongoDB.collection('users').findOne({ 'username': username }, function(err, user) {
-//       if (err) { return done(err); }
-//       if (!myMongoDB) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (!myMongoDB.validPassword(password)) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, myMongoDB);
-//     });
-//   }
-// ));
-// console.log(myMongoDB);
-// });
-
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-
-// passport.deserializeUser(function(id, done) {
-//   User.findById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -77,13 +42,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/login', loginRouter);
-
-// Erik added this for Passport
-// app.post('/login',
-//   passport.authenticate('local', { successRedirect: '/',
-//                                    failureRedirect: '/',
-//                                    failureFlash: true })
-// );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

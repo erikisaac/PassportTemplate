@@ -3,14 +3,7 @@ var router = express.Router();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var mongodb = require("mongodb");
-var flash = require('connect-flash');
-
-// var app = express();
-// app.use(flash());
-
-// router.get('/', function(req, res, next) {
-// 	res.render('/public/index.html');
-// });
+// var flash = require('connect-flash');
 
 
 router.post('/', passport.authenticate('local', { successRedirect: '/page2.html',
@@ -52,7 +45,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-// console.log(myMongoDB);
 });
 
 module.exports = router;
