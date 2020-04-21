@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-var test = true;
+var test = false;
 
 if (test = true) {
 	router.use(express.static('usersonly'));
 };
 
 /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   // res.sendFile('');
-// });
+router.get('/', function(req, res, next) {
+	res.sendFile('');
+});
 
 module.exports = router;
