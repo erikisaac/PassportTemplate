@@ -37,10 +37,11 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // app.use(express.static(path.join(__dirname, '/usersonly')));
 
-// app.get('/usersonly', function(req, res, next) {
-// 	express.static('usersonly');
-// 	console.log("Erik Note: Users Only app.js route working.");
-// });
+app.get('/usersonly', function(req, res, next) {
+	app.use(express.static(path.join(__dirname, '/usersonly')));
+	console.log("Erik Note: Users Only app.js route working.");
+	res.send('Erik Note: Response from /usersonly');
+});
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
