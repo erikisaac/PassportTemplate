@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var loginRouter = require('./routes/login');
+var usersonly = require('./routes/usersonly');
 
 var app = express();
 
@@ -35,19 +36,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(express.static(path.join(__dirname, '/usersonly')));
-
-app.get('/index2.html', function(req, res, next) {
-
-
-
-	console.log("Erik Note: Users Only app.js route working.");
-});
+// app.use(express.static(path.join(__dirname, '/usersonly')));
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/login', loginRouter);
+app.use('/usersonly', usersonlyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
