@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 // app.use(express.static(path.join(__dirname, '/usersonly')));
 
-app.get('/usersonly', function(req, res, next) {
+app.get('/usersonly/index2.html', function(req, res, next) {
 	res.sendFile(path.join(__dirname+'usersonly/index2.html'));
 	console.log("Erik Note: Users Only app.js route working.");
 	res.send('Erik Note: Response from /usersonly');
