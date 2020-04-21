@@ -35,8 +35,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-router.get('/page3.html', function(req, res, next) {
-  console.log("Erik Note: app route working.");
+router.get('usersonly/index.html', function(req, res, next) {
+  console.log("Erik Note: Users Only app.js route working.");
 });
 
 // app.use('/', indexRouter);
