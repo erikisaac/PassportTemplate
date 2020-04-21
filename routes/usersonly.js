@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile('index2, {root: "/usersonly"}');
+  res.sendFile(path.join(__dirname + '/index2.html'));
 });
 
 module.exports = router;
