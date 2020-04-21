@@ -5,10 +5,9 @@ var passport = require('passport')
 var mongodb = require("mongodb");
 // var flash = require('connect-flash');
 
-
-// router.post('/', passport.authenticate('local', { successRedirect: 'usersonly/index2.html',
-// 	failureRedirect: '/'})
-// );
+router.post('/', passport.authenticate('local', { successRedirect: '/',
+	failureRedirect: '/'})
+);
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb:Yellow1972!//heroku_3zgk6kbj:@ds155674.mlab.com:55674/heroku_3zgk6kbj", function (err, client) {
     if (err) {
@@ -46,9 +45,5 @@ passport.deserializeUser(function(id, done) {
 });
 
 });
-
-router.post('/', passport.authenticate('local', { successRedirect: 'usersonly/index2.html',
-  failureRedirect: '/'})
-);
 
 module.exports = router;
