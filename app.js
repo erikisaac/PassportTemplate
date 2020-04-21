@@ -35,8 +35,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use(express.static(path.join(__dirname, '/usersonly')));
+
 app.get('/usersonly', function(req, res, next) {
-	app.use(express.static(path.join(__dirname, '/usersonly')));
+	// app.use(express.static(path.join(__dirname, '/usersonly')));
 	console.log("Erik Note: Users Only app.js route working.");
 });
 
