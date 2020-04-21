@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-express.static('usersonly');
+app.use(express.static(path.join(__dirname, '/usersonly')));
 
 // app.get('/usersonly', function(req, res, next) {
 // 	express.static('usersonly');
