@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongodb = require("mongodb");
-var router = express.Router();
+// var router = express.Router();
 
 // Erik added this for Passport
 var passport = require('passport')
@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
-router.get('/usersonly/index.html', function(req, res, next) {
+app.get('/usersonly/index.html', function(req, res, next) {
 	res.sendFile('/usersonly/index.html');
 	console.log("Erik Note: Users Only app.js route working.");
 });
