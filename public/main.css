@@ -40,10 +40,7 @@ main {
 }
 
 form#Login {
-	margin-top: 10px;
-	margin-bottom: 0px;
-	margin-left: auto;
-	margin-right: auto;
+	text-align: center;
 }
 
 table#BasicTable {
