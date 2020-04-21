@@ -9,7 +9,7 @@ if (test == true) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.sendFile('');
+	res.sendFile('index2.html');
 });
 
 module.exports = router;
