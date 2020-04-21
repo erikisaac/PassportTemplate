@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.sendFile('index.html');
 });
 
-router.get('/usersonly', function(req, res, next) {
-  res.sendFile('index2.html', { root: '.usersonly' });
-});
+// router.get('/usersonly', function(req, res, next) {
+//   res.sendFile('index2.html', { root: '.usersonly' });
+// });
 
 module.exports = router;

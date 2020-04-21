@@ -36,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static('public'));
+app.use(express.static('usersonly'));
 
 // app.use(express.static(path.join(__dirname, '/usersonly')));
 
