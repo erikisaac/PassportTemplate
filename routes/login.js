@@ -5,7 +5,7 @@ var passport = require('passport')
 var mongodb = require("mongodb");
 // var flash = require('connect-flash');
 
-router.post('/', passport.authenticate('local', { successRedirect: '/',
+router.post('/', passport.authenticate('local', { successRedirect: '/usersonly',
 	failureRedirect: '/'})
 );
 
