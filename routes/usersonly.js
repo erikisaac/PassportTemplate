@@ -7,7 +7,6 @@ router.get('/', checkAuthentication, function(req,res){
     res.sendFile((path.join(__dirname, '../usersonly/index2.html')));
 });
 
-
 function checkAuthentication(req,res,next){
 	if(req.isAuthenticated()){
 
