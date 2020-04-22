@@ -9,7 +9,7 @@ router.get('/', checkAuthentication, function(req,res){
 
 function checkAuthentication(req,res,next){
 	if(req.isAuthenticated()){
-
+		console.log('Erik Note: User name: ' + req.user.username);
         next();
     } else {
         res.redirect("/");
