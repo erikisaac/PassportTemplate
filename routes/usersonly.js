@@ -17,3 +17,7 @@ function checkAuthentication(req,res,next){
 };
 
 module.exports = router;
+
+router.get('/username', checkAuthentication, function(req,res){
+	res.status(200).json(req.user.username);
+});

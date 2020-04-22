@@ -125,7 +125,28 @@
 <script>
 var app = angular.module('myApp', [])
 app.controller('myController', function($scope, $http) {
-                
+     
+    // START: GET User Name
+    var mongoRequest = {
+        method: 'get',
+        url: '/api',
+        dataType: 'json',
+        contentType: "application/json"
+    };
+
+    $scope.arrOutsideMongoData = new Array;
+
+    $http(mongoRequest)
+        .success(function (jsonData2) {
+            $scope.arrOutsideMongoData = jsonData2;
+            $scope.list2 = $scope.arrOutsideMongoData;
+            console.log("From Mongo DB: " + $scope.list2);
+        })
+        .error(function () {
+            console.log("Request Fail Function");
+        });
+    // END
+
     // START: GET Request from file
     var request = {
         method: 'get',
@@ -148,18 +169,18 @@ app.controller('myController', function($scope, $http) {
     // START: GET Request from Server Mongo DB
     var mongoRequest = {
         method: 'get',
-        url: '/api',
+        url: '/login/username',
         dataType: 'json',
         contentType: "application/json"
     };
 
-    $scope.arrOutsideMongoData = new Array;
+    $scope.arrOutsideMongoData3 = new Array;
 
     $http(mongoRequest)
         .success(function (jsonData2) {
-            $scope.arrOutsideMongoData = jsonData2;
-            $scope.list2 = $scope.arrOutsideMongoData;
-            console.log("From Mongo DB: " + $scope.list2);
+            $scope.arrOutsideMongoData3 = jsonData2;
+            $scope.list3 = $scope.arrOutsideMongoData3;
+            console.log("Erik Note: User: " + $scope.list3);
         })
         .error(function () {
             console.log("Request Fail Function");
