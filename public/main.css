@@ -39,6 +39,10 @@ main {
 	margin-bottom: 0px;
 }
 
+form#Login {
+	text-align: center;
+}
+
 table#BasicTable {
 	margin-top: 10px;
 	margin-bottom: 0px;

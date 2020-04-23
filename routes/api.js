@@ -66,9 +66,6 @@ router.delete("/:id", function(req, res) {
   console.log("Erik Note: DELETE is working.");
 
   var ObjectID = mongodb.ObjectID;
-  
-  // var deleteData = {}; 
-  // deleteData = req.body;
 
   console.log("Erik Note: Var check: " + req.params.id + " " + JSON.stringify(req.params.id));
 

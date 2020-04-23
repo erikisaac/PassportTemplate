@@ -3,17 +3,9 @@ var router = express.Router();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 var mongodb = require("mongodb");
-var flash = require('connect-flash');
+// var flash = require('connect-flash');
 
-// var app = express();
-// app.use(flash());
-
-// router.get('/', function(req, res, next) {
-// 	res.render('/public/index.html');
-// });
-
-
-router.post('/', passport.authenticate('local', { successRedirect: '/page2.html',
+router.post('/', passport.authenticate('local', { successRedirect: '/usersonly',
 	failureRedirect: '/'})
 );
 
@@ -52,7 +44,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-// console.log(myMongoDB);
 });
 
 module.exports = router;
