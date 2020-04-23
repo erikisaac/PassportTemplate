@@ -126,7 +126,7 @@
 var app = angular.module('myApp', [])
 app.controller('myController', function($scope, $http) {
      
-    // START: GET User Name
+    // START: GET Request from Server Mongo DB
     var mongoRequest = {
         method: 'get',
         url: '/api',
@@ -166,7 +166,7 @@ app.controller('myController', function($scope, $http) {
             console.log("Request Fail Function");
         });
 
-    // START: GET Request from Server Mongo DB
+    // START: GET User Name
     var mongoRequest = {
         method: 'get',
         url: '/usersonly/username',
@@ -177,8 +177,8 @@ app.controller('myController', function($scope, $http) {
     $scope.arrOutsideMongoData3 = new Array;
 
     $http(mongoRequest)
-        .success(function (jsonData2) {
-            $scope.arrOutsideMongoData3 = jsonData2;
+        .success(function (jsonData3) {
+            $scope.arrOutsideMongoData3 = jsonData3;
             $scope.list3 = $scope.arrOutsideMongoData3;
             console.log("Erik Note: User: " + $scope.list3);
         })
